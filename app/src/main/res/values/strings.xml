@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">BAR/U</string>
+
+    <string-array name="barangay_array">
+        <item>Bagumbayan</item>
+        <item>Bambang</item>
+        <item>Calzada</item>
+        <item>Central Bicutan</item>
+        <item>Central Signal Village</item>
+        <item>Fort Bonifacio</item>
+        <item>Hagonoy</item>
+        <item>Ibayo Tipas</item>
+        <item>Katuparan</item>
+        <item>Ligid Tipas</item>
+        <item>Lower Bicutan</item>
+        <item>Maharlika Village</item>
+        <item>Napindan</item>
+        <item>New Lower Bicutan</item>
+        <item>North Daang Hari</item>
+        <item>North Signal Village</item>
+        <item>Palingon Tipas</item>
+        <item>Pinagsama</item>
+        <item>San Miguel</item>
+        <item>Santa Ana</item>
+        <item>South Daang Hari</item>
+        <item>South Signal Village</item>
+        <item>Tanyag</item>
+        <item>Tuktukan</item>
+        <item>Ususan</item>
+        <item>Upper Bicutan</item>
+        <item>Wawa</item>
+        <item>Western Bicutan</item>
+    </string-array>
+</resources>

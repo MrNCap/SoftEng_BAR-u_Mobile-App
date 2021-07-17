@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayoutCompat"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animationCache="false"
+    tools:context=".Services">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/teal_200"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar2"
+        app:srcCompat="@drawable/services_main_icons"
+        tools:ignore="VectorDrawableCompat" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="64dp"
+        android:alpha="0.5"
+        android:onClick="GoTo_Home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar2"
+        app:srcCompat="@drawable/home_main_icon"
+        tools:ignore="VectorDrawableCompat" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="64dp"
+        android:alpha="0.5"
+        android:onClick="GoTo_Profile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar2"
+        app:srcCompat="@drawable/profile_main_icon"
+        tools:ignore="VectorDrawableCompat" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "208354417676",
+    "project_id": "baru-dc543",
+    "storage_bucket": "baru-dc543.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208354417676:android:23a54af9bb755ac8ce2229",
+        "android_client_info": {
+          "package_name": "com.example.baru_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "208354417676-0kc17ltnio9ani1rip90fcdlprv6og9r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-uxvqZkpan4fD9hCJ4-zBiy4bkU93DXQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "208354417676-0kc17ltnio9ani1rip90fcdlprv6og9r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208354417676:android:35ef4ebd09c2c6fece2229",
+        "android_client_info": {
+          "package_name": "com.example.baru_mobileapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "208354417676-0kc17ltnio9ani1rip90fcdlprv6og9r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-uxvqZkpan4fD9hCJ4-zBiy4bkU93DXQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "208354417676-0kc17ltnio9ani1rip90fcdlprv6og9r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

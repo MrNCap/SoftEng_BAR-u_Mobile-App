@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayoutCompat"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Profile">
+
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:background="#ECECEC"
+        app:layout_constraintBottom_toTopOf="@+id/toolbar2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_contactno" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User Fullname"
+        android:textColor="@color/text_gray"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Contact Number"
+        android:textColor="@color/text_gray"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/user_email"
+        app:layout_constraintTop_toBottomOf="@+id/user_email" />
+
+    <ImageView
+        android:id="@+id/settings_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:onClick="OpenUserSettings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_settings_24"
+        tools:ignore="VectorDrawableCompat" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="16dp"
+        android:text="Email"
+        android:textColor="@color/text_gray"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_name" />
+
+    <TextView
+        android:id="@+id/user_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User Email Address"
+        android:textColor="@color/text_gray"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textView20"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+    <TextView
+        android:id="@+id/user_contactno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User Contact Number"
+        android:textColor="@color/text_gray"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+
+            android:padding="5dp"
+            android:src="@drawable/userlogo"
+            app:civ_border_color="@color/white"
+            app:civ_border_overlay="true"
+            app:civ_border_width="1dp"
+            app:civ_circle_background_color="@color/white" />
+
+        <ImageView
+            android:id="@+id/change_profile_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="-30dp"
+            android:onClick="ChangeProfile"
+            app:srcCompat="@drawable/change_profile"
+            tools:ignore="VectorDrawableCompat" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/teal_200"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:alpha="0.5"
+        android:onClick="GoTo_Services"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar2"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar2"
+        app:srcCompat="@drawable/services_main_icons"
+        tools:ignore="VectorDrawableCompat" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="64dp"
+        android:alpha="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar2"
+        app:srcCompat="@drawable/profile_main_icon"
+        tools:ignore="VectorDrawableCompat" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="64dp"
+        android:alpha="0.5"
+        android:onClick="GoTo_Home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar2"
+        app:srcCompat="@drawable/home_main_icon"
+        tools:ignore="VectorDrawableCompat" />
+
+    <ImageView
+        android:id="@+id/profileImage"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/user_email"
+        app:layout_constraintStart_toEndOf="@+id/user_email"
+        app:layout_constraintTop_toTopOf="@+id/user_email"
+        app:srcCompat="@drawable/ic_baseline_verified_24" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
