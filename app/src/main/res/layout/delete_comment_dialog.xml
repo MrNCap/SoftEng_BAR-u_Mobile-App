@@ -12,54 +12,54 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="350dp"
-        android:layout_height="250dp"
+        android:layout_width="250dp"
+        android:layout_height="200dp"
         android:background="#00FFFFFF">
 
         <Button
-            android:id="@+id/accept_terms_btn"
+            android:id="@+id/accept_delete_btn"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="175dp"
+            android:layout_width="125dp"
             android:layout_height="45dp"
             android:background="#2196F3"
-            android:text="Accept"
+            android:text="Delete"
             android:textAllCaps="false"
             app:backgroundTint="#2196F3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
-            android:id="@+id/decline_terms_btn"
+            android:id="@+id/decline_delete_btn"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="175dp"
+            android:layout_width="125dp"
             android:layout_height="45dp"
             android:background="#2196F3"
-            android:text="Decline"
+            android:text="Cancel"
             android:textAllCaps="false"
             app:backgroundTint="#6C6C6C"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/accept_terms_btn"
+            app:layout_constraintEnd_toStartOf="@+id/accept_delete_btn"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
             android:id="@+id/imageView6"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             app:layout_constraintBottom_toTopOf="@+id/textView14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_fact_check_24"
+            app:srcCompat="@drawable/ic_baseline_delete_24"
             tools:ignore="VectorDrawableCompat" />
 
         <TextView
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="92dp"
-            android:text="Terms and Conditions"
+            android:layout_marginTop="60dp"
+            android:text="Delete Comment?"
             android:textColor="@color/text_gray"
-            android:textSize="30sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,17 +67,18 @@
 
         <TextView
             android:id="@+id/textView16"
-            android:layout_width="284dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="4dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:gravity="center"
-            android:text="by creating an account you agree to BAR/U's Terms of Service and Privacy Policy."
+            android:text="Are you sure you want to delete this comment?"
             android:textColor="#8E8E8E"
             android:textSize="14sp"
             android:textStyle="normal"
-            app:layout_constraintEnd_toEndOf="@+id/textView14"
-            app:layout_constraintHorizontal_bias="0.465"
-            app:layout_constraintStart_toStartOf="@+id/textView14"
+            app:layout_constraintBottom_toTopOf="@+id/accept_delete_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

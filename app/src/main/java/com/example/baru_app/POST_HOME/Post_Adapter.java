@@ -6,8 +6,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +24,7 @@ import com.example.baru_app.Services;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -44,17 +47,19 @@ public class Post_Adapter extends FirestoreRecyclerAdapter<Post_Model, Post_Adap
     DocumentReference PostListRef;
     CollectionReference commentCounter;
     FirebaseAuth firebaseAuth;
-    String userID,sql_return_barangay;
+    String userID,sql_return_barangay,postID;
     StorageReference Address_storageRef,BarangayProfile;
     FirebaseStorage firebaseStorage;
     DatabaseHelper databasehelper;
     OnItemClicklistener listener;
+
     public Post_Adapter(@NonNull FirestoreRecyclerOptions<Post_Model> options) {
         super(options);
     }
 
     @Override
     protected void onBindViewHolder(@NonNull PostHolder holder, int position, @NonNull Post_Model model) {
+        postID = model.getDocID();
         firebaseStorage = FirebaseStorage.getInstance();
         firestoreDB = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -70,6 +75,7 @@ public class Post_Adapter extends FirestoreRecyclerAdapter<Post_Model, Post_Adap
         PostListRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+
                 if(value.getBoolean("admin") == false){
                     holder.Post_Title.setText(value.getString("firstName") +" " + value.getString("lastName") );
                     holder.Post_Author.setText("Brgy. "+value.getString("barangay"));
@@ -81,6 +87,11 @@ public class Post_Adapter extends FirestoreRecyclerAdapter<Post_Model, Post_Adap
                         @Override
                         public void onSuccess(Uri uri) {
                             Picasso.get().load(uri).into(holder.Post_Profile);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
                         }
                     });
 
@@ -96,20 +107,22 @@ public class Post_Adapter extends FirestoreRecyclerAdapter<Post_Model, Post_Adap
                         public void onSuccess(Uri uri) {
                             Picasso.get().load(uri).into(holder.Post_Profile);
                         }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                        }
                     });
                 }
 
-
-                commentCounter = firestoreDB.collection("barangays").document(sql_return_barangay).collection("users");
+                commentCounter = firestoreDB.collection("barangays").document(sql_return_barangay).collection("post").document(postID).collection("comment");
                 commentCounter.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         holder.Post_NumComment.setText(String.valueOf(queryDocumentSnapshots.size()));
+//                        holder.Post_NumComment.setText(String.valueOf(queryDocumentSnapshots.size()));
                     }
                 });
-
-
-
 
             }
         });

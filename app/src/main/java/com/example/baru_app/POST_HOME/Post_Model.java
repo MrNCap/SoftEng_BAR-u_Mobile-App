@@ -1,5 +1,7 @@
 package com.example.baru_app.POST_HOME;
 
+import com.google.firebase.firestore.DocumentId;
+
 public class Post_Model {
     private String title;
     private String date;
@@ -7,12 +9,18 @@ public class Post_Model {
     private String numberComment;
     private String time;
     private String author_id;
+    private String docID;
 
 
     public Post_Model(){
 
     }
 
+
+    @DocumentId
+    public String getDocID() {
+        return docID;
+    }
 
 
 
