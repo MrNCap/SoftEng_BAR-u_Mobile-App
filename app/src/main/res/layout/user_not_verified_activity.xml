@@ -8,6 +8,56 @@
     tools:context=".AUTHENTICATION.UserNotVerified">
 
     <TextView
+        android:id="@+id/resend_btn3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resend Proof of Address Verification"
+        android:textSize="12sp"
+        android:textStyle="normal|bold"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/addres_title"
+        app:layout_constraintStart_toStartOf="@+id/addres_title"
+        app:layout_constraintTop_toBottomOf="@+id/addres_title" />
+
+    <TextView
+        android:id="@+id/addres_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Proof of Address Failed?"
+        android:textSize="10sp"
+        android:textStyle="normal"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/textView19"
+        app:layout_constraintStart_toStartOf="@+id/textView19"
+        app:layout_constraintTop_toBottomOf="@+id/resend_btn2" />
+
+    <TextView
+        android:id="@+id/resend_btn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resend ID Verification"
+        android:textSize="12sp"
+        android:textStyle="normal|bold"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/id_title"
+        app:layout_constraintStart_toStartOf="@+id/id_title"
+        app:layout_constraintTop_toBottomOf="@+id/id_title" />
+
+    <TextView
+        android:id="@+id/id_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="ID Verification Failed?"
+        android:textSize="10sp"
+        android:textStyle="normal"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/textView19"
+        app:layout_constraintStart_toStartOf="@+id/textView19"
+        app:layout_constraintTop_toBottomOf="@+id/resend_btn" />
+
+    <TextView
         android:id="@+id/resend_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,7 +108,7 @@
         android:id="@+id/imageView3"
         android:layout_width="225dp"
         android:layout_height="142dp"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -104,7 +154,7 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="60dp"
         android:text="ID Verification"
         android:textColor="@color/text_gray"
         android:textSize="20sp"
@@ -142,7 +192,7 @@
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="24dp"
         android:text="Email verification not received?"
         android:textSize="10sp"
         android:textStyle="normal"

@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,14 +21,15 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.baru_app.AUTHENTICATION.Login;
-import com.example.baru_app.AUTHENTICATION.New_Device;
-import com.example.baru_app.AUTHENTICATION.SendCredential;
-import com.example.baru_app.AUTHENTICATION.UserNotVerified;
 import com.example.baru_app.DATABASE_SQL.DatabaseHelper;
+import com.example.baru_app.HISTORY_TRANSACTION.History_Adapter;
+import com.example.baru_app.HISTORY_TRANSACTION.Histoy_Model;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,11 +39,13 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -78,8 +83,12 @@ public class Profile extends AppCompatActivity {
     FirebaseUser user,userAuth,userEmailCheck;
     CircleImageView profile;
     StorageReference Address_storageRef;
-
+    CollectionReference transactionList_ref;
+    History_Adapter History_Adapter_transaction,History_Adapter_history;
+    Switch aswitch;
+    RecyclerView post_View;
     Uri selectedPic;
+    Query query_onGoing;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,13 +107,29 @@ public class Profile extends AppCompatActivity {
         sql_return_barangay = databasehelper.getBarangayCurrentUser(userID);
         databasehelper.close();
         ProfileUserRef = firestoreDB.collection("barangays").document(sql_return_barangay).collection("users").document(userID);
+        transactionList_ref = firestoreDB.collection("barangays").document(sql_return_barangay).collection("requests");
 
         //WIDGETS
         userEmail = findViewById(R.id.user_email);
         userContactNo = findViewById(R.id.user_contactno);
         userName = findViewById(R.id.user_name);
         linearLayoutCompat = findViewById(R.id.linearLayoutCompat);
-        profile = findViewById(R.id.profileImage);
+        profile = findViewById(R.id.home_brgy_profile);
+        aswitch = findViewById(R.id.switch1);
+
+        Query query = transactionList_ref.whereEqualTo("author_id",userID).whereNotEqualTo("status","Completed");
+        FirestoreRecyclerOptions<Histoy_Model> History_Option_Current = new FirestoreRecyclerOptions.Builder<Histoy_Model>()
+                .setQuery(query, Histoy_Model.class)
+                .build();
+        History_Adapter_transaction = new History_Adapter(History_Option_Current);
+
+        Query query_history = transactionList_ref.whereEqualTo("author_id",userID).whereEqualTo("status","Completed").orderBy("timestamp", Query.Direction.ASCENDING);
+        FirestoreRecyclerOptions<Histoy_Model> History_Option_History = new FirestoreRecyclerOptions.Builder<Histoy_Model>()
+                .setQuery(query_history, Histoy_Model.class)
+                .build();
+        History_Adapter_history = new History_Adapter(History_Option_History);
+
+
 
         //LOADING DIALOG
         loading_layout = new Dialog(this);
@@ -163,18 +188,73 @@ public class Profile extends AppCompatActivity {
 
 
 
+        transaction_list();
+        aswitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if(isChecked == true){
+                    //SHOW HISTORY
+                    aswitch.setText("History");
+                    history_list();
 
+                }else{
+                    //CURRENT TRANSACTIONS
+                    aswitch.setText("Active");
+                    transaction_list();
+                }
+            }
+        });
 
+                    History_Adapter_transaction.setOnItemClickListner(new History_Adapter.OnItemClicklistener() {
+                        @Override
+                        public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                            String id = documentSnapshot.getId();
+                            Intent OpenPost = new Intent(Profile.this, com.example.baru_app.OpenTransaction.class);
+                            OpenPost.putExtra("pass_ID",id);
+                            startActivity(OpenPost);
+                        }
+                    });
 
-
-
-
-
-
-
+                    History_Adapter_history.setOnItemClickListner(new History_Adapter.OnItemClicklistener() {
+                        @Override
+                        public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
+                            String id = documentSnapshot.getId();
+                            Intent OpenPost = new Intent(Profile.this, com.example.baru_app.OpenTransaction.class);
+                            OpenPost.putExtra("pass_ID",id);
+                            startActivity(OpenPost);
+                        }
+                    });
 
 
     }
+    public void transaction_list(){
+        post_View = findViewById(R.id.transaction_recycleView);
+        post_View.setHasFixedSize(true);
+        post_View.setLayoutManager(new LinearLayoutManager(Profile.this));
+        post_View.setAdapter(History_Adapter_transaction);
+    }
+
+    public void history_list(){
+        post_View = findViewById(R.id.transaction_recycleView);
+        post_View.setHasFixedSize(true);
+        post_View.setLayoutManager(new LinearLayoutManager(Profile.this));
+        post_View.setAdapter(History_Adapter_history);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        History_Adapter_transaction.startListening();
+        History_Adapter_history.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        History_Adapter_transaction.stopListening();
+        History_Adapter_history.stopListening();
+    }
+
 
     public void OpenUserSettings(View view){
         userSettings_menu.show();
@@ -339,8 +419,8 @@ public class Profile extends AppCompatActivity {
     }
     public void GoTo_Services(View view){
         startActivity(new Intent(getApplicationContext(),Services.class).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
-
     }
+
     ActivityResultLauncher<String> attach_profile_pic = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
                 @Override

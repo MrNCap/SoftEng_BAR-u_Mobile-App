@@ -1,32 +1,22 @@
 package com.example.baru_app.POST_HOME;
 
-import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.baru_app.AUTHENTICATION.New_Device;
-import com.example.baru_app.DATABASE_SQL.BarangayUserModel;
 import com.example.baru_app.DATABASE_SQL.DatabaseHelper;
-import com.example.baru_app.HomePage;
 import com.example.baru_app.R;
-import com.example.baru_app.Services;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -34,13 +24,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Post_Adapter extends FirestoreRecyclerAdapter<Post_Model, Post_Adapter.PostHolder> {
     FirebaseFirestore firestoreDB;
@@ -79,10 +65,11 @@ public class Post_Adapter extends FirestoreRecyclerAdapter<Post_Model, Post_Adap
                 if(value.getBoolean("admin") == false){
                     holder.Post_Title.setText(value.getString("firstName") +" " + value.getString("lastName") );
                     holder.Post_Author.setText("Brgy. "+value.getString("barangay"));
+                    holder.Post_Description.setText(model.getDescription());
                     holder.Post_Date.setText(model.getDate());
                     holder.Post_Time.setText(model.getTime());
                     //USER PIC
-                    Address_storageRef = firebaseStorage.getReference().child("PROFILE/users/" +  userID + "/user_profile");
+                    Address_storageRef = firebaseStorage.getReference().child("PROFILE/users/" +  model.getAuthor_id() + "/user_profile");
                     Address_storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
@@ -115,14 +102,7 @@ public class Post_Adapter extends FirestoreRecyclerAdapter<Post_Model, Post_Adap
                     });
                 }
 
-                commentCounter = firestoreDB.collection("barangays").document(sql_return_barangay).collection("post").document(postID).collection("comment");
-                commentCounter.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        holder.Post_NumComment.setText(String.valueOf(queryDocumentSnapshots.size()));
-//                        holder.Post_NumComment.setText(String.valueOf(queryDocumentSnapshots.size()));
-                    }
-                });
+                holder.Post_NumComment.setText(model.getNumberComment());
 
             }
         });
@@ -153,7 +133,7 @@ public class Post_Adapter extends FirestoreRecyclerAdapter<Post_Model, Post_Adap
             Post_Time = itemView.findViewById(R.id. postTime);
             Post_Description = itemView.findViewById(R.id. postContent);
             Post_NumComment = itemView.findViewById(R.id. post_commentSize);
-            Post_Profile = itemView.findViewById(R.id. profileImage);
+            Post_Profile = itemView.findViewById(R.id.home_brgy_profile);
 
 
             itemView.setOnClickListener(new View.OnClickListener() {

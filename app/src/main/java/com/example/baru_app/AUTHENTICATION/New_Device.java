@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.baru_app.DATABASE_SQL.BarangayUserModel;
 import com.example.baru_app.DATABASE_SQL.DatabaseHelper;
+import com.example.baru_app.Profile;
 import com.example.baru_app.R;
 import com.example.baru_app.Services;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -104,7 +105,6 @@ public class New_Device extends AppCompatActivity {
                 //
                 try{
                     verify_Reference = firestoreDB.collection("barangays").document(barangay_selected).collection("users");
-
                     verify_Reference.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                         @Override
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -116,20 +116,24 @@ public class New_Device extends AppCompatActivity {
                                     newUser = new BarangayUserModel(-1,userID, barangay_selected);
                                     boolean success = databaseHelper.addOneUser(newUser);
                                     databaseHelper.close();
-                                    userFound.show();
+//                                    userFound.show();
                                     checker_user = true;
+                                    Intent intent = new Intent(New_Device.this, Services.class);
+                                    startActivity(intent);
+                                    finish();
+
                                     next_btn.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
-                                            Intent intent = new Intent(New_Device.this, Services.class);
-                                            startActivity(intent);
-                                            finish();
+                                            userFound.dismiss();
+
                                         }
                                     });
                                     break;
                                 }
                                 checker_user = false;
                             }
+
                             if (checker_user == false) {
                                 loading_layout.dismiss();
                                 no_userFound.show();
@@ -143,7 +147,7 @@ public class New_Device extends AppCompatActivity {
 
 
                         }
-                    });//END FAIL-SUCCESS LISTENER
+                    });
 
                 }catch (Exception e){
                    //

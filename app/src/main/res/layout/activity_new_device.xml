@@ -41,6 +41,7 @@
         android:background="#2196F3"
         android:text="Send Verification"
         android:textAllCaps="false"
+        android:textColor="#FFFFFF"
         app:backgroundTint="#2196F3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,7 +60,7 @@
         app:srcCompat="@drawable/ic_baseline_phonelink_lock_24" />
 
     <TextView
-        android:id="@+id/textView14"
+        android:id="@+id/title_xml"
         android:layout_width="304dp"
         android:layout_height="139dp"
         android:layout_marginStart="16dp"
@@ -100,6 +101,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/SPACER2"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+        app:layout_constraintTop_toBottomOf="@+id/title_xml" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

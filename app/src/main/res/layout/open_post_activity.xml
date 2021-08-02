@@ -6,10 +6,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:alpha="1"
-    android:background="@color/white"
+    android:background="@color/purple_200"
     android:orientation="vertical"
     tools:context=".POST_HOME.OpenPost">
 
+
+    <Button
+        android:id="@+id/btnComment"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/ic_baseline_send_24"
+        android:onClick="AddComment"
+        android:textSize="10sp"
+        app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/etCommentBox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/etCommentBox" />
+
+    <EditText
+        android:id="@+id/etCommentBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/btn_corners"
+        android:gravity="start"
+        android:hint="Write a comment..."
+        android:inputType="textMultiLine"
+        android:paddingLeft="15dp"
+        android:paddingTop="10dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="10dp"
+        android:textSize="15sp"
+        android:layout_marginBottom="8dp"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnComment"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar4"
@@ -55,51 +90,6 @@
         app:srcCompat="@drawable/ic_baseline_dehaze_24"
         tools:ignore="VectorDrawableCompat" />
 
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/teal_200"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
-
-    <Button
-        android:id="@+id/btnComment"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/ic_baseline_send_24"
-        android:onClick="AddComment"
-        android:textSize="10sp"
-        app:backgroundTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/etCommentBox"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/etCommentBox" />
-
-    <EditText
-        android:id="@+id/etCommentBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/btn_corners"
-        android:gravity="start"
-        android:hint="Write a comment..."
-        android:inputType="textMultiLine"
-        android:paddingLeft="15dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:paddingRight="15dp"
-        android:textSize="15sp"
-        app:layout_constrainedHeight="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_max="100dp"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView2"
         android:layout_width="0dp"
@@ -107,24 +97,23 @@
         android:clipToPadding="false"
         android:fillViewport="true"
         android:foregroundGravity="top"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/etCommentBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar4"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar4">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/btn_corners"
+            android:background="@color/white"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/btn_corners"
+                android:background="@color/white"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -137,7 +126,7 @@
                     tools:layout_editor_absoluteY="42dp">
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/profileImage"
+                        android:id="@+id/home_brgy_profile"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_marginLeft="20dp"
@@ -226,12 +215,12 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:background="#888787" />
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/white"
                 android:orientation="vertical"
                 android:paddingTop="10dp">
 
@@ -247,15 +236,29 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/commentList"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginBottom="10dp"
-                    android:overScrollMode="never" />
+                    android:background="#FFFFFF"
+                    android:overScrollMode="never">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/etCommentBox" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

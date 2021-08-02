@@ -160,18 +160,18 @@ public class RegisterPage extends AppCompatActivity {
                         fill_Password.setError("Password is Required");
                         return;
                     }
-////                if(TextUtils.isEmpty(passwordConfirm)) {
-////                    fill_PasswordConfirmation.setError("Password Confirmation is Required");
-////                    return;
-////                }
-////                if(!PASSWORD_PATTERN.matcher(password).matches()){
-////                    fill_Password.setError("Password must have at least 8 characters, Should contain a number, symbol, lower case and upper case letters");
-////                    return;
-////                }
-////                if(!password.equals(passwordConfirm)){
-////                    fill_PasswordConfirmation.setError("Password entered is not the same.");
-////                    return;
-////                }
+                    if(TextUtils.isEmpty(passwordConfirm)) {
+                        fill_PasswordConfirmation.setError("Password Confirmation is Required");
+                        return;
+                    }
+                    if(!PASSWORD_PATTERN.matcher(password).matches()){
+                        fill_Password.setError("Password must have at least 8 characters, Should contain a number, symbol, lower case and upper case letters");
+                        return;
+                    }
+                    if(!password.equals(passwordConfirm)){
+                        fill_PasswordConfirmation.setError("Password entered is not the same.");
+                        return;
+                    }
                     if (TextUtils.isEmpty(address)) {
                         fill_DetailedAddress.setError("Detailed Address is Required");
                         return;
@@ -215,7 +215,13 @@ public class RegisterPage extends AppCompatActivity {
                             user.put("idVerification", "Pending");
                             user.put("credential", false);
                             user.put("admin", false);
-
+                            user.put("barangay_certificate", false);
+                            user.put("barangay_clearance", false);
+                            user.put("certificate_indigency", false);
+                            user.put("certificate_residency", false);
+                            user.put("barangay_id", false);
+                            user.put("barangay_id_replacement", false);
+                            user.put("health_certificate", false);
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {

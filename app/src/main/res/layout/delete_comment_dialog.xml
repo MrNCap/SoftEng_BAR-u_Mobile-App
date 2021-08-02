@@ -24,6 +24,7 @@
             android:background="#2196F3"
             android:text="Delete"
             android:textAllCaps="false"
+            android:textColor="#FFFFFF"
             app:backgroundTint="#2196F3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -36,6 +37,7 @@
             android:background="#2196F3"
             android:text="Cancel"
             android:textAllCaps="false"
+            android:textColor="#FFFFFF"
             app:backgroundTint="#6C6C6C"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/accept_delete_btn"
@@ -45,7 +47,7 @@
             android:id="@+id/imageView6"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView14"
+            app:layout_constraintBottom_toTopOf="@+id/title_xml"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -53,7 +55,7 @@
             tools:ignore="VectorDrawableCompat" />
 
         <TextView
-            android:id="@+id/textView14"
+            android:id="@+id/title_xml"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
@@ -79,7 +81,7 @@
             app:layout_constraintBottom_toTopOf="@+id/accept_delete_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+            app:layout_constraintTop_toBottomOf="@+id/title_xml" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

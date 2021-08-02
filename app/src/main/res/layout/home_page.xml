@@ -8,66 +8,66 @@
     tools:context=".HomePage">
 
 
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Post"
+        android:textColor="@color/text_gray"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="@+id/brgy_name"
+        app:layout_constraintTop_toBottomOf="@+id/brgy_name" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/home_brgy_profile"
+        android:layout_width="75dp"
+        android:layout_height="72dp"
+
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:padding="5dp"
+        android:src="@drawable/userlogo"
+        app:civ_border_color="@color/white"
+        app:civ_border_overlay="true"
+        app:civ_border_width="1dp"
+        app:civ_circle_background_color="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/brgy_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="24dp"
+        android:text="Barangay Name"
+        android:textColor="@color/text_gray"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/home_brgy_profile"
+        app:layout_constraintStart_toEndOf="@+id/home_brgy_profile"
+        app:layout_constraintTop_toTopOf="@+id/home_brgy_profile" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/home_post_recycleView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:background="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/toolbar2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar3"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:background="@color/teal_200"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-
-    </androidx.appcompat.widget.Toolbar>
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar3"
-        android:layout_width="0dp"
-        android:layout_height="5dp"
-        android:alpha="0.2"
-        android:background="@color/text_gray"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
-
-
-    </androidx.appcompat.widget.Toolbar>
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/home_user_profile"
-        android:layout_width="50dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/userlogo"
-        app:civ_border_color="#D1D1D1"
-        app:civ_border_overlay="true"
-        app:civ_border_width="1dp"
-        app:civ_circle_background_color="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.326" />
+        app:layout_constraintTop_toBottomOf="@+id/home_brgy_profile" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/teal_200"
+        android:background="@drawable/corners_toolbar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -86,48 +86,50 @@
         app:layout_constraintEnd_toEndOf="@+id/toolbar2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/toolbar2"
-        app:srcCompat="@drawable/services_main_icons"
-        tools:ignore="VectorDrawableCompat" />
+        app:srcCompat="@drawable/ic_round_playlist_add_24"
+        tools:ignore="VectorDrawableCompat"
+        app:tint="@color/white" />
 
     <ImageView
         android:id="@+id/imageView8"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:layout_marginStart="64dp"
+        android:layout_marginStart="32dp"
         android:alpha="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/toolbar2"
-        app:srcCompat="@drawable/home_main_icon"
-        tools:ignore="VectorDrawableCompat" />
+        app:srcCompat="@drawable/ic_round_home_24"
+        tools:ignore="VectorDrawableCompat"
+        app:tint="@color/white" />
 
     <ImageView
         android:id="@+id/imageView9"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginEnd="32dp"
         android:alpha="0.5"
         android:onClick="GoTo_Profile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/toolbar2"
-        app:srcCompat="@drawable/profile_main_icon"
-        tools:ignore="VectorDrawableCompat" />
+        app:srcCompat="@drawable/ic_round_person_24"
+        tools:ignore="VectorDrawableCompat"
+        app:tint="@color/white" />
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/comment_bg"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
         android:onClick="AddPost"
-        android:paddingLeft="15dp"
-        android:paddingTop="10dp"
-        android:text="Write a Post"
-        app:layout_constraintBottom_toBottomOf="@+id/home_user_profile"
-        app:layout_constraintEnd_toEndOf="@+id/toolbar"
-        app:layout_constraintStart_toEndOf="@+id/home_user_profile"
-        app:layout_constraintTop_toTopOf="@+id/home_user_profile" />
+        app:backgroundTint="#F3F3F3"
+        app:layout_constraintBottom_toBottomOf="@+id/home_post_recycleView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:rippleColor="#4FC6FB"
+        app:srcCompat="@drawable/ic_baseline_add_24"
+        tools:ignore="VectorDrawableCompat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

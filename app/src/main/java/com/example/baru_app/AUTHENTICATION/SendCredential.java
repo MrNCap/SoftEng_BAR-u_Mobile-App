@@ -1,8 +1,10 @@
 package com.example.baru_app.AUTHENTICATION;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -17,6 +19,8 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.baru_app.DATABASE_SQL.DatabaseHelper;
 import com.example.baru_app.R;
@@ -35,7 +39,9 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SendCredential extends AppCompatActivity {
@@ -49,7 +55,7 @@ public class SendCredential extends AppCompatActivity {
     String userID,sql_return_barangay;
     Dialog verification_sent_dialog;
     DatabaseHelper databasehelper;
-
+    String[] permissions;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +76,18 @@ public class SendCredential extends AppCompatActivity {
         send_verification_btn = findViewById(R.id.send_verification);
         address_show_text_fileUpload = findViewById(R.id.address_show_text_fileUpload);
         id_show_text_fileUpload = findViewById(R.id.id_show_text_fileUpload);
+
+        permissions = new String[]{
+                Manifest.permission.INTERNET,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        };
+
+        checkPermissions();
+
+
+
+
 
         verification_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,7 +135,7 @@ public class SendCredential extends AppCompatActivity {
                     progressDialog_2.setTitle("File Attachment Uploading (2/2)");
                     progressDialog_2.show();
                     StorageReference Address_storageRef = firebaseStorage.getReference().child("VALIDATION_FILES/users/ " +  userID + "/ADDRESS_PROOF");
-                    Address_storageRef.putFile(selectedFile_ID).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    Address_storageRef.putFile(selectedFile_Address).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                             if (task.isSuccessful()) {
@@ -189,6 +207,32 @@ public class SendCredential extends AppCompatActivity {
 
 
     }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 100) {
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // do something
+            }
+            return;
+        }
+    }
+    private boolean checkPermissions() {
+        int result;
+        List<String> listPermissionsNeeded = new ArrayList<>();
+        for (String p : permissions) {
+            result = ContextCompat.checkSelfPermission(this, p);
+            if (result != PackageManager.PERMISSION_GRANTED) {
+                listPermissionsNeeded.add(p);
+            }
+        }
+        if (!listPermissionsNeeded.isEmpty()) {
+            ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), 100);
+            return false;
+        }
+        return true;
+    }
         ActivityResultLauncher<String> attach_File_ID = registerForActivityResult(new ActivityResultContracts.GetContent(),
                 new ActivityResultCallback<Uri>() {
                     @Override
@@ -197,6 +241,7 @@ public class SendCredential extends AppCompatActivity {
                             selectedFile_ID = result;
                             file_upload_id.setBackgroundColor(Color.BLUE);
                             id_show_text_fileUpload.setVisibility(View.VISIBLE);
+                            id_show_text_fileUpload.setText(selectedFile_ID.getLastPathSegment());
                         }
 
                     }
@@ -209,6 +254,7 @@ public class SendCredential extends AppCompatActivity {
                             selectedFile_Address = result;
                             file_upload_address.setBackgroundColor(Color.BLUE);
                             address_show_text_fileUpload.setVisibility(View.VISIBLE);
+                            address_show_text_fileUpload.setText(selectedFile_Address.getLastPathSegment());
                         }
 
                     }

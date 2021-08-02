@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.baru_app.R;
 import com.example.baru_app.Services;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,8 +23,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.storage.FirebaseStorage;
 
 public class Login extends AppCompatActivity {
     EditText login_email, login_pass;
@@ -34,6 +36,8 @@ public class Login extends AppCompatActivity {
     Dialog forgotpass,loading_layout;
     TextView send_email_input;
     FirebaseFirestore firestoreDB;
+    FirebaseStorage firebaseStorage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +50,9 @@ public class Login extends AppCompatActivity {
         }
         //FIREBASE INSTANCE
         {
-            firebaseAuth = FirebaseAuth.getInstance();
+            firebaseStorage = FirebaseStorage.getInstance();
             firestoreDB = FirebaseFirestore.getInstance();
+            firebaseAuth = FirebaseAuth.getInstance();
 
         }
         //DIALOG FORGOTPASS
@@ -68,9 +73,6 @@ public class Login extends AppCompatActivity {
         }
 
 
-
-
-
         //USER LOGIN CHECKER
         {
             if (firebaseAuth.getCurrentUser() != null) {
@@ -79,6 +81,16 @@ public class Login extends AppCompatActivity {
                 finish();
             }
         }
+
+
+
+
+
+
+
+
+
+
 
         BtnLog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,7 +126,12 @@ public class Login extends AppCompatActivity {
         });
 
 
+
+
+
     }
+
+
     public void RegisterNewAcc(View view){
         Intent intent = new Intent(this, RegisterPage.class);
         startActivity(intent);

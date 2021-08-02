@@ -9,7 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BARu_APP.">
-        <activity android:name=".POST_HOME.OpenPost"></activity>
+        <activity android:name=".SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".OpenTransaction" />
+        <activity android:name=".TRANSACTIONS_PAGE.Barangay_Clearance" />
+        <activity android:name=".TRANSACTIONS_PAGE.Barangay_Certificate" />
+        <activity android:name=".TRANSACTIONS_PAGE.BarangayID" />
+        <activity android:name=".TRANSACTIONS_PAGE.Residency" />
+        <activity android:name=".TRANSACTIONS_PAGE.Indigency" />
+        <activity android:name=".POST_HOME.OpenPost" />
         <activity android:name=".AUTHENTICATION.New_Device" />
         <activity android:name=".Profile" />
         <activity android:name=".HomePage" />
@@ -25,8 +38,9 @@
         <activity android:name=".AUTHENTICATION.RegisterPage" />
         <activity android:name=".Services" />
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>

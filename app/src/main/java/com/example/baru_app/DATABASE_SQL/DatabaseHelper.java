@@ -27,7 +27,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTableStatement = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + USER_FIRBASE_ID + " TEXT, " + BARANGAY + " TEXT)";
-
         db.execSQL(createTableStatement);
     }
 
@@ -54,10 +53,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     public String getBarangayCurrentUser(String userId){
         String resultBarangay = null;
-//        boolean checker = true;
         SQLiteDatabase db = this.getReadableDatabase();
         String queryString = "SELECT * FROM " + TABLE_NAME;
         Cursor cursor = db.rawQuery(queryString,null);
+
+//        if(cursor.moveToFirst()) {
+//            do {
+//                resultBarangay= cursor.getString(2);
+//            } while (cursor.getString(1).equals(userId));
+//        }
+
         if(cursor.moveToFirst()) {
             while (true){
                 if(cursor.getString(1).equals(userId)){

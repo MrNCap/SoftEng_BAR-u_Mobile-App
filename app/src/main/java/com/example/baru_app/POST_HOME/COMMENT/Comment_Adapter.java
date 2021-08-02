@@ -1,19 +1,15 @@
 package com.example.baru_app.POST_HOME.COMMENT;
 
 import android.app.Dialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,19 +22,14 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class Comment_Adapter extends FirestoreRecyclerAdapter<Comment_Model, Comment_Adapter.PostHolder> {
     FirebaseFirestore firestoreDB;
@@ -83,74 +74,96 @@ public class Comment_Adapter extends FirestoreRecyclerAdapter<Comment_Model, Com
         post_id = model.getPostID();
         comment_id = model.getDocID();
 
-        //Comment User Setting
-//        openCommentSetting = new Dialog(holder.itemView.getContext());
-//        openCommentSetting.setContentView(R.layout.comment_settings_popout);
-//        openCommentSetting.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//        edit_comment_setting = openCommentSetting.findViewById(R.id.edit_comment_setting);
-//        delete_comment_setting = openCommentSetting.findViewById(R.id.delete_comment_setting);
-//            //DeleteComment User dialog
-//            deleteComment = new Dialog(holder.itemView.getContext());
-//            deleteComment.setContentView(R.layout.delete_comment_dialog);
-//            deleteComment.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//                //widgets
-//                delete_comment = deleteComment.findViewById(R.id.accept_delete_btn);
-//                cancel_delete_comment = deleteComment.findViewById(R.id.decline_delete_btn);
-//            //Comment User dialog
-//            editComment = new Dialog(holder.itemView.getContext());
-//            editComment.setContentView(R.layout.edit_comment);
-//            editComment.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//                //widgets
-//                editAuthor  = editComment.findViewById(R.id.edit_author);
-//                editDate  = editComment.findViewById(R.id.edit_date);
-//                editTime  = editComment.findViewById(R.id.edit_time);
-//                editComment_user = editComment.findViewById(R.id.commentBox_edit);
-//                update_comment = editComment.findViewById(R.id.update_comment_btn);
-
-
 
         PostListRef = firestoreDB.collection("barangays").document(sql_return_barangay).collection("users").document(model.getAuthor_id());
         PostListRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                holder.User.setVisibility(View.GONE);
+                holder.Other.setVisibility(View.GONE);
 
-                if(value.getBoolean("admin") == false){
-                    holder.Comment_Author.setText(value.getString("firstName") +" " + value.getString("lastName"));
-                    holder.Comment_Content.setText(model.getComment());
-                    holder.Comment_Date.setText(model.getDate());
-                    holder.Comment_Time.setText(model.getTime());
-                    //USER PIC
-                    Address_storageRef = firebaseStorage.getReference().child("PROFILE/users/" +  userID + "/user_profile");
-                    Address_storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            Picasso.get().load(uri).into(holder.Comment_Profile);
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
+                if(model.getAuthor_id().equals(userID)){
+                    holder.User.setVisibility(View.VISIBLE);
+                    if(value.getBoolean("admin") == false){
+                        holder.User_Comment_Author.setText(value.getString("firstName") +" " + value.getString("lastName"));
+                        holder.User_Comment_Content.setText(model.getComment());
+                        holder.User_Comment_Date.setText(model.getDate());
+                        holder.User_Comment_Time.setText(model.getTime());
+                        //USER PIC
+                        Address_storageRef = firebaseStorage.getReference().child("PROFILE/users/" +  model.getAuthor_id() + "/user_profile");
+                        Address_storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                Picasso.get().load(uri).into(holder.User_Comment_Profile);
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
 
-                        }
-                    });
+                            }
+                        });
 
+                    }else{
+
+                        holder.User_Comment_Author.setText("Brgy. "+value.getString("barangay"));
+                        holder.User_Comment_Content.setText(model.getComment());
+                        holder.User_Comment_Date.setText(model.getDate());
+                        holder.User_Comment_Time.setText(model.getTime());
+                        BarangayProfile = firebaseStorage.getReference().child("BARANGAY LOGO/"+sql_return_barangay+"/profile_brgy.jpg");
+                        BarangayProfile.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                Picasso.get().load(uri).into(holder.User_Comment_Profile);
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+
+                            }
+                        });
+                    }
                 }else{
-                    holder.Comment_Author.setText("Brgy. "+value.getString("barangay"));
-                    holder.Comment_Content.setText(model.getComment());
-                    holder.Comment_Date.setText(model.getDate());
-                    holder.Comment_Time.setText(model.getTime());
-                    BarangayProfile = firebaseStorage.getReference().child("BARANGAY LOGO/"+sql_return_barangay+"/profile_brgy.jpg");
-                    BarangayProfile.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            Picasso.get().load(uri).into(holder.Comment_Profile);
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
+                    holder.Other.setVisibility(View.VISIBLE);
+                    if(value.getBoolean("admin") == false){
+                        holder.Other_Comment_Author.setText(value.getString("firstName") +" " + value.getString("lastName"));
+                        holder.Other_Comment_Content.setText(model.getComment());
+                        holder.Other_Comment_Date.setText(model.getDate());
+                        holder.Other_Comment_Time.setText(model.getTime());
+                        //USER PIC
+                        Address_storageRef = firebaseStorage.getReference().child("PROFILE/users/" +  model.getAuthor_id() + "/user_profile");
+                        Address_storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                Picasso.get().load(uri).into(holder.Other_Comment_Profile);
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
 
-                        }
-                    });
+                            }
+                        });
+
+                    }else{
+                        holder.Other_Comment_Author.setText("Brgy. "+value.getString("barangay"));
+                        holder.Other_Comment_Content.setText(model.getComment());
+                        holder.Other_Comment_Date.setText(model.getDate());
+                        holder.Other_Comment_Time.setText(model.getTime());
+                        BarangayProfile = firebaseStorage.getReference().child("BARANGAY LOGO/"+sql_return_barangay+"/profile_brgy.jpg");
+                        BarangayProfile.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                Picasso.get().load(uri).into(holder.Other_Comment_Profile);
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+
+                            }
+                        });
+                    }
+
                 }
+
 
 
 
@@ -164,20 +177,34 @@ public class Comment_Adapter extends FirestoreRecyclerAdapter<Comment_Model, Com
     @NonNull
     @Override
     public PostHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.comment_list,parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.comment_list_all,parent, false);
         return new PostHolder(view);
     }
 
     class PostHolder extends RecyclerView.ViewHolder{
-        TextView Comment_Author,Comment_Date,Comment_Content,Comment_Time;
-        ImageView Comment_Profile;
+        TextView User_Comment_Author,User_Comment_Date,User_Comment_Content,User_Comment_Time;
+        ImageView User_Comment_Profile;
+        TextView Other_Comment_Author,Other_Comment_Date,Other_Comment_Content,Other_Comment_Time;
+        ImageView Other_Comment_Profile;
+        LinearLayout User,Other;
         public PostHolder(@NonNull View itemView) {
             super(itemView);
-            Comment_Author = itemView.findViewById(R.id.tvCommentAuthor);
-            Comment_Date = itemView.findViewById(R.id. tvCommentDate);
-            Comment_Time = itemView.findViewById(R.id. tvCommentTime);
-            Comment_Content = itemView.findViewById(R.id. tvCommentContent);
-            Comment_Profile = itemView.findViewById(R.id. profileImage);
+
+            User = itemView.findViewById(R.id.currentUserLayout);
+            User_Comment_Author = itemView.findViewById(R.id.user_CommentAuthor);
+            User_Comment_Date = itemView.findViewById(R.id. user_CommentDate);
+            User_Comment_Time = itemView.findViewById(R.id. user_CommentTime);
+            User_Comment_Content = itemView.findViewById(R.id. user_CommentContent);
+            User_Comment_Profile = itemView.findViewById(R.id.home_brgy_profile);
+
+            Other = itemView.findViewById(R.id.otherUserLayout);
+            Other_Comment_Author = itemView.findViewById(R.id.other_CommentAuthor);
+            Other_Comment_Date = itemView.findViewById(R.id. other_CommentDate);
+            Other_Comment_Time = itemView.findViewById(R.id. other_CommentTime);
+            Other_Comment_Content = itemView.findViewById(R.id. other_CommentContent);
+            Other_Comment_Profile = itemView.findViewById(R.id.other_profileImage);
+
+
 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
