@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    app:cardCornerRadius="20dp">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="300dp"
+        android:layout_height="420dp"
+        android:background="#00FFFFFF">
+
+        <Button
+            android:id="@+id/next_replacement_btn"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="150dp"
+            android:layout_height="45dp"
+            android:background="#2196F3"
+            android:text="Next"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="#2196F3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/cancel_replacement_btn"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="150dp"
+            android:layout_height="45dp"
+            android:background="#2196F3"
+            android:text="Cancel"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="#6C6C6C"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/next_replacement_btn"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/others_specify4"
+            android:layout_width="246dp"
+            android:layout_height="82dp"
+            android:background="@drawable/comment_bg_user"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Specify changes or addition"
+            android:inputType="textMultiLine"
+            android:padding="8dp"
+            android:textSize="14sp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@+id/reason_radg"
+            app:layout_constraintStart_toStartOf="@+id/reason_radg"
+            app:layout_constraintTop_toBottomOf="@+id/reason_radg" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_class_24"
+            tools:ignore="VectorDrawableCompat" />
+
+        <RadioGroup
+            android:id="@+id/reason_radg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            app:layout_constraintStart_toStartOf="@+id/textView27"
+            app:layout_constraintTop_toBottomOf="@+id/textView27">
+
+            <RadioButton
+                android:id="@+id/reason_1"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="Lost or Stolen" />
+
+            <RadioButton
+                android:id="@+id/reason_2"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="Damaged" />
+
+            <RadioButton
+                android:id="@+id/reason_3"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="Needs Amendment" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:text="Reason:"
+            android:textColor="@color/text_gray"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textView16"
+            app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+        <TextView
+            android:id="@+id/title_xml"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:text="Barangay ID Replacement"
+            android:textColor="@color/text_gray"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="Please answer the given question/s and attach the requirements\nneeded, to be able to send request for this particular document."
+            android:textColor="#8E8E8E"
+            android:textSize="10sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="@+id/title_xml"
+            app:layout_constraintStart_toStartOf="@+id/title_xml"
+            app:layout_constraintTop_toBottomOf="@+id/title_xml" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TRANSACTIONS_PAGE.BarangayID">
+
+    <TextView
+        android:id="@+id/show_pickdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Date"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/date_picker"
+        app:layout_constraintStart_toEndOf="@+id/date_picker"
+        app:layout_constraintTop_toTopOf="@+id/date_picker" />
+
+    <Button
+        android:id="@+id/date_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Pick Date"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:backgroundTint="#A8A8A8"
+        app:icon="@drawable/ic_baseline_date_range_24"
+        app:iconPadding="2dp"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintStart_toStartOf="@+id/textView33"
+        app:layout_constraintTop_toBottomOf="@+id/textView33" />
+
+    <ImageView
+        android:id="@+id/verify_icon"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/verify_num"
+        app:layout_constraintStart_toEndOf="@+id/verify_num"
+        app:layout_constraintTop_toTopOf="@+id/verify_num"
+        app:srcCompat="@drawable/ic_baseline_info_24"
+        tools:ignore="VectorDrawableCompat" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Verify with:"
+        android:textColor="@color/text_gray"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textView33"
+        app:layout_constraintTop_toBottomOf="@+id/date_picker" />
+
+    <RadioGroup
+        android:id="@+id/radioG_verify"
+        android:layout_width="163dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/textView29"
+        app:layout_constraintTop_toBottomOf="@+id/textView29">
+
+        <RadioButton
+            android:id="@+id/rad1"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:text="Voter's ID" />
+
+        <RadioButton
+            android:id="@+id/rad2"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:text="National ID" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Birthdate"
+        android:textColor="@color/text_gray"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/file_upload_id3"
+        app:layout_constraintTop_toBottomOf="@+id/file_upload_id3" />
+
+    <TextView
+        android:id="@+id/id_show_text_fileUpload4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="1 - File Selected"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/file_upload_id3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/file_upload_id3"
+        app:layout_constraintTop_toTopOf="@+id/file_upload_id3" />
+
+    <Button
+        android:id="@+id/file_upload_id3"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Attach file"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:backgroundTint="#A8A8A8"
+        app:icon="@drawable/attach_icon"
+        app:iconPadding="2dp"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintStart_toStartOf="@+id/textView26"
+        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="16dp"
+        android:text="1x1 Picture"
+        android:textColor="@color/text_gray"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/title_xml"
+        app:layout_constraintTop_toBottomOf="@+id/title_xml" />
+
+    <ImageView
+        android:id="@+id/back_to_home2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:alpha="1"
+        android:clickable="true"
+        android:onClick="GoBack_service"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
+        tools:ignore="VectorDrawableCompat"
+        app:tint="@color/teal_200" />
+
+    <TextView
+        android:id="@+id/brgy_name2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:alpha="0.8"
+        android:text="Barangay Name"
+        android:textColor="@color/text_gray"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <Button
+        android:id="@+id/send_request"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="#2196F3"
+        android:text="Send Request"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="#2196F3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_class_24"
+        tools:ignore="VectorDrawableCompat" />
+
+    <TextView
+        android:id="@+id/title_xml"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+        android:text="Please answer the given question/s and attach the requirements needed, to be able to send request for this particular document."
+        android:textColor="#8E8E8E"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/brgy_name2" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Barangay ID"
+        android:textColor="@color/text_gray"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_info_24"
+        tools:ignore="VectorDrawableCompat" />
+
+    <EditText
+        android:id="@+id/verify_num"
+        android:layout_width="252dp"
+        android:layout_height="40dp"
+        android:background="@drawable/comment_bg_user"
+        android:ems="10"
+        android:hint="VIN Number"
+        android:inputType="number"
+        android:padding="8dp"
+        android:textSize="14sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.452"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verfiy_type" />
+
+    <TextView
+        android:id="@+id/verfiy_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Voter's ID: VIN Number"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/verify_num"
+        app:layout_constraintTop_toBottomOf="@+id/radioG_verify" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
